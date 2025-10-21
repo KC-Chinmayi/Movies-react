@@ -3,18 +3,32 @@ import Moviecard from './Moviecard'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import Pagination from './Pagination'
 
 const Movies = () => {//Movies component to display a list of movie cards
  
 const [movies,setMovies]=React.useState([])//holds list of movies fetched from the api
+const [pageNo, setPageNo] = useState(1);
+
+
+  const handlePrev = () => {
+    if(pageNo==1){
+      setPageNo(1)//or setPageNo(pageNo)
+    }else{
+      setPageNo(pageNo - 1)
+    }
+  }
+  const handleNext = () => {
+    setPageNo(pageNo + 1)
+  }
 
   useEffect(()=>{
 
-     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US&page=5`)//replace with ypor api key
+     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US&page=${pageNo}`)//replace with ypor api key
   .then(res => setMovies(res.data.results))
-  },[])
+  },[pageNo])
  
- 
+  console.log({ movies });
  
   return (
     <div className='p-5'>
@@ -28,7 +42,8 @@ const [movies,setMovies]=React.useState([])//holds list of movies fetched from t
         )
         }
         </div>
-   
+   <Pagination handlePrev={handlePrev} handleNext={handleNext} pageNo={pageNo}/>
+
     </div>
   )
 }
