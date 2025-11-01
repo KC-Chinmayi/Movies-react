@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Watchlist = () => {
+const Watchlist = ({watchlist}) => {
   return (
    <>
     {/*Genere part*/}
@@ -26,35 +26,23 @@ const Watchlist = () => {
       </thead>
       <tbody>
         {/*1st row */}
-        <tr className='border-b-2'>
+
+        {watchlist.map((movieObj)=>{
+          return   <tr key={movieObj.id} className='border-b-2'>
           <td className='flex items-center px-6 py-4'>
-            <img className='h-[6rem] w-[10rem]'  src={`https://cdna.artstation.com/p/assets/images/images/063/096/684/large/william-j-harris-oppenheimer-movie-poster-2023.jpg?1684720979`} alt="" />
-            <div className='mx-10'>Openheimer</div>
+            <img className='h-[6rem] w-[10rem]'  src={`https://image.tmdb.org/t/p/w500${movieObj.poster_path}`} />
+            <div className='mx-10'>{movieObj.original_title}</div>
           </td>
           <td>
-            8.5
+            {movieObj.vote_average}
           </td>
-        <td>9</td>
-        <td>Thriller</td>
+        <td>{movieObj.popularity}</td>
+        <td>{movieObj.genre_ids}</td>{/*gives genere id*/}
         <td className='text-red-700'>
           Delete
         </td>
         </tr>
-       {/*2nd row */}
-        <tr className='border-b-2'>
-          <td className='flex items-center px-6 py-4'>
-            <img className='h-[6rem] w-[10rem]'  src={`https://i.pinimg.com/originals/b7/24/d9/b724d968025c6cda0580ccfa1541a89a.png`} alt="" />
-            <div className='mx-10'>Zootopia</div>
-          </td>
-          <td>
-            9
-          </td>
-        <td>9</td>
-        <td>Comedy</td>
-        <td className='text-red-700'>
-          Delete
-        </td>
-        </tr>
+        })}
 
       </tbody>
     </table>

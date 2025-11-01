@@ -4,7 +4,7 @@ import Movies from './components/Movies'
 import Watchlist from './components/Watchlist'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Banner from './components/Banner'
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 
 const App = () => {
 
@@ -13,6 +13,8 @@ let [watchlist,setWatchList]=useState([])//state to manage the watchlist compone
 let handleAddtoWatchList=(movieObj)=>{//function
   let newWatchList=[...watchlist,movieObj]//spread operator to add new movie to the existing watchlist
   setWatchList(newWatchList)
+  localStorage.setItem('moviesApp',JSON.stringify(newWatchList))//storing watchlist in the local storage as key value pair 
+  //// Save the updated watchlist in localStorage as a JSON string so data persists even after page reload
   console.log(newWatchList);
 }
 
@@ -25,6 +27,18 @@ let handleRemoveFromWatchList=(movieObj)=>{
   setWatchList(filteredWatchList)
 }
 
+
+
+
+//useeffect is used to fetch data from local storage if it exists
+useEffect( ()=>{
+  let moviesFromLocalStorage=localStorage.getItem('moviesApp')
+if(!moviesFromLocalStorage){
+  return
+}
+setWatchList(JSON.parse(moviesFromLocalStorage))},[])
+
+
   return (
     <>
    <BrowserRouter>    
@@ -33,12 +47,14 @@ let handleRemoveFromWatchList=(movieObj)=>{
     <Navbar/>
     <Routes>
       <Route path='/' element={<> <Banner/> <Movies watchlist={watchlist} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>}/>{/*handleAddtoWatchList-prop drilling*/}
-      <Route path='/watchlist' element={<Watchlist/>}/>
+      <Route path='/watchlist' element={<Watchlist watchlist={watchlist}/>}/>
     
     </Routes>
    </BrowserRouter>
     </>
   )
 }
+
+
 
 export default App
