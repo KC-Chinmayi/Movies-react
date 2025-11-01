@@ -26,24 +26,19 @@ let handleRemoveFromWatchList=(movieObj)=>{
   })
   setWatchList(filteredWatchList)
 }
-
-
-
-
-//useeffect is used to fetch data from local storage if it exists
+//use effect is used to fetch data from local storage if it exists
 useEffect( ()=>{
   let moviesFromLocalStorage=localStorage.getItem('moviesApp')
 if(!moviesFromLocalStorage){
   return
 }
-setWatchList(JSON.parse(moviesFromLocalStorage))},[])
+setWatchList(JSON.parse(moviesFromLocalStorage))},[])//dependency array [] runs only once after the first render (on mount)
 
 
   return (
     <>
    <BrowserRouter>    
-   {//wrapping all components in BrowserRouter for routing
-   }
+   {/*wrapping all components in BrowserRouter for routing*/}
     <Navbar/>
     <Routes>
       <Route path='/' element={<> <Banner/> <Movies watchlist={watchlist} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>}/>{/*handleAddtoWatchList-prop drilling*/}

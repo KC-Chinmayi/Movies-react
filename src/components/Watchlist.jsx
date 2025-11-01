@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Watchlist = ({watchlist}) => {
+
+const [search,setSearch]=useState('')
+
+
+let handleSearch =(e)=>{
+  setSearch(e.target.value)
+}
+
+
   return (
    <>
     {/*Genere part*/}
@@ -12,7 +21,7 @@ const Watchlist = ({watchlist}) => {
 
 {/* Table*/}
    <div className='flex justify-center my-4'>
-    <input type="text" placeholder='Search Movies' className='h-[3rem] w-[18rem] bg-gray-200 outline-none px-4'/>
+    <input onChange={handleSearch} value={search} type="text" placeholder='Search Movies' className='h-[3rem] w-[18rem] bg-gray-200 outline-none px-4'/>
    </div>
    <div className='overflow rounded-lg border border-gray-200 m-8'>
     <table className='w-full text-gray-500 text-center'>
@@ -27,7 +36,9 @@ const Watchlist = ({watchlist}) => {
       <tbody>
         {/*1st row */}
 
-        {watchlist.map((movieObj)=>{
+        {watchlist.filter((movieObj)=>{
+          return movieObj.title.toLowerCase().includes(search.toLowerCase())
+        }).map((movieObj)=>{
           return   <tr key={movieObj.id} className='border-b-2'>
           <td className='flex items-center px-6 py-4'>
             <img className='h-[6rem] w-[10rem]'  src={`https://image.tmdb.org/t/p/w500${movieObj.poster_path}`} />
