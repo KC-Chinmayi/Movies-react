@@ -37,7 +37,8 @@ const [pageNo, setPageNo] = useState(1);
         <div className='flex flex-row flex-wrap justify-around gap-8 m-5'>
           
           {movies.map((movieObj)=>{// Maps over the movies array and renders a Moviecard for each movie with its poster and title 
-            return <Moviecard movieObj={movieObj} key={movieObj.id} poster_path={movieObj.poster_path} name={movieObj.original_title} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} watchlist={watchlist}/>//3 pros are passed,unique key, poster_path gives image path and name gives movie title
+            return <Moviecard movieObj={movieObj} key={movieObj.id} poster_path={movieObj.poster_path} name={movieObj.original_title} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} watchlist={watchlist}/>//prop drilling 
+          //Prop drilling means passing data (props) from a parent component → through multiple layers of child components → to reach a deeply nested component that actually needs it.
           }
         )
         }

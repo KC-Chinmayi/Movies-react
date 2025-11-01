@@ -10,7 +10,7 @@ const App = () => {
 
 let [watchlist,setWatchList]=useState([])//state to manage the watchlist component
 
-let handleAddtoWatchList=(movieObj)=>{//method
+let handleAddtoWatchList=(movieObj)=>{//function
   let newWatchList=[...watchlist,movieObj]//spread operator to add new movie to the existing watchlist
   setWatchList(newWatchList)
   console.log(newWatchList);

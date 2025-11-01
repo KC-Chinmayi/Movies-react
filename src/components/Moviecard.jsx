@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const Moviecard = ({poster_path,name,handleAddtoWatchList,movieObj,handleRemoveFromWatchList,watchlist}) => {//Moviecard component to display individual movie cards
-  
+  //App → Movies → Moviecard prop destructuring 
 
 function doesContain(movieObj){
 
