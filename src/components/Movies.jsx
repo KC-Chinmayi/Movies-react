@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import Pagination from './Pagination'
 
-const Movies = () => {//Movies component to display a list of movie cards
+const Movies = ({handleAddtoWatchList,handleRemoveFromWatchList,watchlist}) => {//Movies component to display a list of movie cards
  
 const [movies,setMovies]=React.useState([])//holds list of movies fetched from the api
 const [pageNo, setPageNo] = useState(1);
@@ -37,7 +37,7 @@ const [pageNo, setPageNo] = useState(1);
         <div className='flex flex-row flex-wrap justify-around gap-8 m-5'>
           
           {movies.map((movieObj)=>{// Maps over the movies array and renders a Moviecard for each movie with its poster and title 
-            return <Moviecard  key={movieObj.id} poster_path={movieObj.poster_path} name={movieObj.original_title}/>//3 pros are passed,unique key, poster_path gives image path and name gives movie title
+            return <Moviecard movieObj={movieObj} key={movieObj.id} poster_path={movieObj.poster_path} name={movieObj.original_title} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} watchlist={watchlist}/>//3 pros are passed,unique key, poster_path gives image path and name gives movie title
           }
         )
         }
