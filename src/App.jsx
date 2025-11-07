@@ -42,7 +42,7 @@ setWatchList(JSON.parse(moviesFromLocalStorage))},[])//dependency array [] runs 
     <Navbar/>
     <Routes>
       <Route path='/' element={<> <Banner/> <Movies watchlist={watchlist} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>}/>{/*handleAddtoWatchList-prop drilling*/}
-      <Route path='/watchlist' element={<Watchlist watchlist={watchlist}/>}/>
+      <Route path='/watchlist' element={<Watchlist watchlist={watchlist} setWatchList={setWatchList}/>}/>
     
     </Routes>
    </BrowserRouter>

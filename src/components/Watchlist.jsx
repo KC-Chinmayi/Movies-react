@@ -1,12 +1,29 @@
 import React, { useState } from 'react'
 
-const Watchlist = ({watchlist}) => {
+const Watchlist = ({watchlist,setWatchList}) => {
 
 const [search,setSearch]=useState('')
 
 
 let handleSearch =(e)=>{
   setSearch(e.target.value)
+}
+
+let sortIncreasing=()=>{
+  let sortedIncreasing=watchlist.sort((movieA,movieB) => {
+      return movieA.vote_average-movieB.vote_average
+  })
+  setWatchList([...sortedIncreasing])
+}
+
+
+
+let sortDecreasing=()=>{
+   let sortedDecreasing=watchlist.sort((movieA,movieB) => {
+      return movieB.vote_average-movieA.vote_average
+  })
+  
+setWatchList([...sortedDecreasing])
 }
 
 
@@ -28,7 +45,11 @@ let handleSearch =(e)=>{
       <thead className='border-b-2'>
         <tr>
           <th>Name</th>
-          <th>Ratings</th>
+          <th className='flex justify-center'>
+         <div onClick={sortIncreasing} className='p-2'><i className="fa-solid fa-arrow-up"></i></div>
+          <div className='p-2'>Ratings</div>
+          <div onClick={sortDecreasing} className='p-2'><i className="fa-solid fa-arrow-down"></i></div>
+          </th>
           <th>Popularity</th>
           <th>Genere</th>
         </tr>
