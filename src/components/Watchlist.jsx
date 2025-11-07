@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import genreids from  './Utility/genre'
 
 const Watchlist = ({watchlist,setWatchList}) => {
 
@@ -51,7 +52,7 @@ setWatchList([...sortedDecreasing])
           <div onClick={sortDecreasing} className='p-2'><i className="fa-solid fa-arrow-down"></i></div>
           </th>
           <th>Popularity</th>
-          <th>Genere</th>
+          <th>Genre</th>
         </tr>
       </thead>
       <tbody>
@@ -69,7 +70,7 @@ setWatchList([...sortedDecreasing])
             {movieObj.vote_average}
           </td>
         <td>{movieObj.popularity}</td>
-        <td>{movieObj.genre_ids}</td>{/*gives genere id*/}
+        <td>{genreids[movieObj.genre_ids[0]]}</td>{/*gives genere id*/}
         <td className='text-red-700'>
           Delete
         </td>
