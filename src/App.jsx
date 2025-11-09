@@ -24,7 +24,10 @@ let handleRemoveFromWatchList=(movieObj)=>{
   let filteredWatchList=watchlist.filter((movie)=>{
     return movie.id!=movieObj.id
   })
+   
   setWatchList(filteredWatchList)
+  localStorage.setItem('moviesApp',JSON.stringify(filteredWatchList))//updating local storage after removing movie from watchlist
+
 }
 //use effect is used to fetch data from local storage if it exists
 useEffect( ()=>{
@@ -42,7 +45,7 @@ setWatchList(JSON.parse(moviesFromLocalStorage))},[])//dependency array [] runs 
     <Navbar/>
     <Routes>
       <Route path='/' element={<> <Banner/> <Movies watchlist={watchlist} handleAddtoWatchList={handleAddtoWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>}/>{/*handleAddtoWatchList-prop drilling*/}
-      <Route path='/watchlist' element={<Watchlist watchlist={watchlist} setWatchList={setWatchList}/>}/>
+      <Route path='/watchlist' element={<Watchlist watchlist={watchlist} setWatchList={setWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/>}/>
     
     </Routes>
    </BrowserRouter>
