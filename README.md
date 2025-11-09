@@ -1,12 +1,22 @@
-# React + Vite
+# Movie Watchlist Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React project where you can browse movies and save them to your personal watchlist.  
+The watchlist is stored in localStorage, so your saved movies remain even if you refresh or close the browser.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- View movies fetched from TMDB API
+- Add movies to Watchlist
+- Remove movies from Watchlist
+- Search movies by title
+- Sort movies based on ratings
+- Filter movies by genre
+---
 
-## Expanding the ESLint configuration
+## Technologies Used
+- React.js
+- Tailwind CSS for styling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
