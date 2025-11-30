@@ -7,4 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+
+  base: process.env.VITE_BASE_PATH || '/Movies-react', // base path for github pages 
 });
+
